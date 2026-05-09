@@ -1,0 +1,359 @@
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero-modern{
+    padding:120px 0;
+    background:
+    linear-gradient(
+        135deg,
+        #F8FAFC 0%,
+        #EEF2FF 100%
+    );
+
+    overflow:hidden;
+    position:relative;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:white;
+    padding:10px 18px;
+    border-radius:999px;
+    box-shadow:var(--shadow-sm);
+    margin-bottom:30px;
+    font-weight:600;
+    color:var(--primary);
+}
+
+.hero-title{
+    font-size:4rem;
+    line-height:1.1;
+    font-weight:800;
+    margin-bottom:25px;
+    color:#0F172A;
+}
+
+.hero-description{
+    font-size:1.15rem;
+    color:#64748B;
+    line-height:1.8;
+    margin-bottom:40px;
+    max-width:90%;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:50px;
+}
+
+.btn-modern-primary{
+    background:var(--primary);
+    color:white;
+    padding:16px 28px;
+    border-radius:14px;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:0.3s;
+}
+
+.btn-modern-primary:hover{
+    transform:translateY(-4px);
+    color:white;
+}
+
+.btn-modern-outline{
+    border:2px solid #CBD5E1;
+    color:#0F172A;
+    padding:16px 28px;
+    border-radius:14px;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+}
+
+.hero-stats{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.hero-stat-box{
+    background:white;
+    padding:22px 30px;
+    border-radius:20px;
+    min-width:140px;
+    box-shadow:var(--shadow-sm);
+}
+
+.hero-stat-box h3{
+    font-size:2rem;
+    margin-bottom:5px;
+    color:var(--primary);
+    font-weight:800;
+}
+
+.hero-stat-box p{
+    margin:0;
+    color:#64748B;
+}
+
+/* =========================================
+   HERO IMAGE
+========================================= */
+
+.hero-image-wrapper{
+    position:relative;
+}
+
+.hero-main-card{
+    border-radius:35px;
+    overflow:hidden;
+    box-shadow:0 25px 80px rgba(0,0,0,0.12);
+}
+
+.hero-main-card img{
+    width:100%;
+    height:650px;
+    object-fit:cover;
+}
+
+.floating-card{
+    position:absolute;
+    background:white;
+    border-radius:22px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    animation:floatCard 4s ease-in-out infinite;
+}
+
+.card-one{
+    top:80px;
+    left:-40px;
+}
+
+.card-two{
+    bottom:80px;
+    right:-40px;
+}
+
+.floating-icon{
+    width:60px;
+    height:60px;
+    border-radius:18px;
+    background:rgba(108,99,255,0.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--primary);
+    font-size:1.4rem;
+}
+
+.floating-card h6{
+    margin:0;
+    font-weight:700;
+}
+
+.floating-card p{
+    margin:0;
+    color:#64748B;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.section-modern{
+    padding:120px 0;
+}
+
+.section-header{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.section-badge{
+    background:rgba(108,99,255,0.12);
+    color:var(--primary);
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:600;
+    display:inline-block;
+    margin-bottom:20px;
+}
+
+.section-header h2{
+    font-size:3rem;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.section-header p{
+    color:#64748B;
+    font-size:1.1rem;
+}
+
+/* =========================================
+   TAILOR CARDS
+========================================= */
+
+.tailor-card-modern{
+    background:white;
+    border-radius:28px;
+    padding:28px;
+    transition:0.3s;
+    height:100%;
+    box-shadow:var(--shadow-sm);
+}
+
+.tailor-card-modern:hover{
+    transform:translateY(-10px);
+}
+
+.tailor-card-top{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.tailor-avatar{
+    width:75px;
+    height:75px;
+    border-radius:22px;
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        #8B5CF6
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:1.7rem;
+}
+
+.tailor-card-top h5{
+    margin:0;
+    font-weight:700;
+}
+
+.tailor-card-top span{
+    color:#64748B;
+}
+
+.tailor-meta{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
+
+.tailor-meta div{
+    text-align:center;
+}
+
+.tailor-meta strong{
+    display:block;
+    font-size:1.2rem;
+}
+
+.tailor-meta small{
+    color:#64748B;
+}
+
+.btn-tailor-view{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--primary);
+    color:white;
+    padding:14px;
+    border-radius:14px;
+    font-weight:600;
+}
+
+/* =========================================
+   HOW SECTION
+========================================= */
+
+.how-modern{
+    background:#F8FAFC;
+    padding:120px 0;
+}
+
+.how-card{
+    background:white;
+    border-radius:28px;
+    padding:45px;
+    text-align:center;
+    height:100%;
+    transition:0.3s;
+}
+
+.how-card:hover{
+    transform:translateY(-10px);
+}
+
+.how-icon{
+    width:90px;
+    height:90px;
+    border-radius:24px;
+    background:rgba(108,99,255,0.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 30px;
+    font-size:2rem;
+    color:var(--primary);
+}
+
+.how-card h4{
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.how-card p{
+    color:#64748B;
+    line-height:1.8;
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes floatCard{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+
+
+

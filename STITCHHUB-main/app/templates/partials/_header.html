@@ -1,0 +1,148 @@
+<!-- =========================================
+     MODERN NAVBAR
+========================================= -->
+
+<nav class="navbar navbar-expand-lg navbar-modern">
+
+    <div class="container">
+
+        <!-- LOGO -->
+        <a class="navbar-brand brand-modern"
+           href="{{ url_for('main.home') }}">
+
+            <i class="fas fa-cut"></i>
+            StitchHub
+
+        </a>
+
+        <!-- MOBILE TOGGLE -->
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarModern">
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+        <!-- NAVBAR -->
+        <div class="collapse navbar-collapse"
+             id="navbarModern">
+
+            <!-- LEFT LINKS -->
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link nav-modern-link"
+                       href="{{ url_for('main.home') }}">
+
+                        Home
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-modern-link"
+                       href="{{ url_for('listings.marketplace') }}">
+
+                        Marketplace
+
+                    </a>
+                </li>
+
+                {% if current_user.is_authenticated %}
+
+                    <!-- CUSTOMER -->
+                    {% if current_user.role == "customer" %}
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-modern-link"
+                               href="{{ url_for('dashboard.dashboard') }}">
+
+                                 Dashboard
+
+                            </a>
+                        </li>
+
+                    {% endif %}
+
+                    <!-- TAILOR -->
+                    {% if current_user.role == "tailor" %}
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-modern-link"
+                               href="{{ url_for('dashboard.dashboard') }}">
+
+                                Dashboard
+
+                            </a>
+                        </li>
+
+                    {% endif %}
+
+                {% endif %}
+
+            </ul>
+
+            <!-- RIGHT SIDE -->
+            <div class="d-flex align-items-center gap-3">
+
+                {% if current_user.is_authenticated %}
+
+                    <!-- PROFILE -->
+                    <a href="{{ url_for('profile.profile') }}"
+                       class="profile-modern">
+
+                        <div class="profile-avatar">
+                            {{ current_user.username[0]|upper }}
+                        </div>
+
+                        <div class="profile-info">
+
+                            <span>
+                                {{ current_user.username }}
+                            </span>
+
+                            <small>
+                                {{ current_user.role|capitalize }}
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                    <!-- LOGOUT -->
+                    <a href="{{ url_for('auth.logout') }}"
+                       class="btn-modern-nav">
+
+                        Logout
+
+                    </a>
+
+                {% else %}
+
+                    <!-- LOGIN -->
+                    <a href="{{ url_for('auth.login') }}"
+                       class="nav-login">
+
+                        Login
+
+                    </a>
+
+                    <!-- REGISTER -->
+                    <a href="{{ url_for('auth.register') }}"
+                       class="btn-modern-nav">
+
+                        Get Started
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>

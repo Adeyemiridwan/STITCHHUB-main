@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Add Listing - StitchHub{% endblock %}
+
+{% block content %}
+
+<section class="listing-form-page">
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="form-page-header text-center">
+
+            <span class="form-badge">
+                CREATE SERVICE
+            </span>
+
+            <h1>
+                Showcase Your Tailoring Skill
+            </h1>
+
+            <p>
+                Create a premium listing that attracts customers and grows your tailoring business.
+            </p>
+
+        </div>
+
+        <!-- Form Card -->
+        <div class="listing-form-card">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {{ form.hidden_tag() }}
+
+                <div class="row g-4">
+
+                    <!-- LEFT SIDE -->
+                    <div class="col-lg-8">
+
+                        <!-- Service Title -->
+                        <div class="modern-form-group">
+
+                            <label class="modern-label">
+                                Service Title
+                            </label>
+
+                            {{ form.title(
+                                class="form-control modern-input",
+                                placeholder="e.g. Luxury Senator Wear"
+                            ) }}
+
+                            {% if form.title.errors %}
+                                <small class="text-danger">
+                                    {{ form.title.errors[0] }}
+                                </small>
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Description -->
+                        <div class="modern-form-group">
+
+                            <label class="modern-label">
+                                Service Description
+                            </label>
+
+                            {{ form.description(
+                                class="form-control modern-input",
+                                rows=8,
+                                placeholder="Describe your tailoring service, fabric quality, delivery process, customization options..."
+                            ) }}
+
+                        </div>
+
+                        <!-- Upload -->
+                        <div class="modern-form-group">
+
+                            <label class="modern-label">
+                                Upload Service Image
+                            </label>
+
+                            <div class="upload-box">
+
+                                <i class="fas fa-cloud-upload-alt"></i>
+
+                                <p>
+                                    Upload a high quality fashion image
+                                </p>
+
+                                {{ form.image_file(
+                                    class="form-control modern-file-input"
+                                ) }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT SIDE -->
+                    <div class="col-lg-4">
+
+                        <div class="service-sidebar-card">
+
+                            <!-- Price -->
+                            <div class="modern-form-group">
+
+                                <label class="modern-label">
+                                    Price
+                                </label>
+
+                                <div class="price-input-wrapper">
+
+                                    <span>$</span>
+
+                                    {{ form.price(
+                                        class="form-control modern-input",
+                                        placeholder="0.00"
+                                    ) }}
+
+                                </div>
+
+                            </div>
+
+                            <!-- Category -->
+                            <div class="modern-form-group">
+
+                                <label class="modern-label">
+                                    Category
+                                </label>
+
+                                {{ form.category(
+                                    class="form-select modern-input"
+                                ) }}
+
+                            </div>
+
+                            <!-- Turnaround -->
+                            <div class="modern-form-group">
+
+                                <label class="modern-label">
+                                    Delivery Time
+                                </label>
+
+                                {{ form.turnaround_time(
+                                    class="form-select modern-input"
+                                ) }}
+
+                            </div>
+
+                            <!-- Tips -->
+                            <div class="listing-tip-box">
+
+                                <h6>
+                                    Tips For Better Listings
+                                </h6>
+
+                                <ul>
+                                    <li>Use clean fashion images</li>
+                                    <li>Write detailed descriptions</li>
+                                    <li>Add realistic pricing</li>
+                                    <li>Explain your tailoring quality</li>
+                                </ul>
+
+                            </div>
+
+                            
+
+                            <!-- Buttons -->
+                            <div class="d-grid gap-3 mt-4">
+
+                                <!-- Submit -->
+                                <button type="submit" class="publish-btn">
+
+                                    <i class="fas fa-check-circle me-2"></i>
+                                    Publish Listing
+
+                                </button>
+
+                                <a
+                                    href="{{ url_for('dashboard.dashboard') }}"
+                                    class="cancel-btn text-center text-decoration-none"
+                                >
+
+                                    Cancel
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

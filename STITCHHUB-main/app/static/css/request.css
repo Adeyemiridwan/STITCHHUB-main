@@ -1,0 +1,105 @@
+/* =========================================
+   REQUEST PAGES
+========================================= */
+
+.dashboard-page-header{
+    margin-bottom: 2rem;
+}
+
+.page-title{
+    font-size: 2.4rem;
+    font-weight: 800;
+
+    color: #ffffff;
+
+    margin-bottom: 0.6rem;
+}
+
+.page-subtitle{
+    color: #ffffff;
+}
+
+/* =========================================
+   REQUEST FORM
+========================================= */
+
+.request-form-wrapper{
+    max-width: 750px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 2.5rem;
+
+    border-radius: 32px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.06);
+}
+
+.request-form-header{
+    margin-bottom: 2rem;
+}
+
+.request-form-header h1{
+    font-size: 2.5rem;
+    font-weight: 800;
+
+    margin-bottom: 0.7rem;
+}
+
+.request-form-header p{
+    color: #d4d7dc;
+}
+
+
+.advanced-form{
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.4rem;
+}
+
+.form-group label{
+    display: block;
+
+    font-weight: 700;
+
+    margin-bottom: 0.7rem;
+
+    color: #111827;
+}
+
+.custom-input{
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    padding: 1rem 1.2rem;
+
+    min-height: 58px;
+
+    transition: 0.3s ease;
+
+    box-shadow: none !important;
+}
+
+.custom-input:focus{
+    border-color: #8B5CF6;
+
+    box-shadow:
+        0 0 0 4px rgba(139,92,246,0.12) !important;
+}
+
+.custom-textarea{
+    min-height: 140px;
+
+    resize: none;
+}
+
+.form-btn{
+    border: none;
+
+    margin-top: 1rem;
+}

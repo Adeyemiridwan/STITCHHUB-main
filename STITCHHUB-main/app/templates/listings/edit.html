@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Listing - StitchHub{% endblock %}
+
+{% block content %}
+
+<section class="listing-form-page">
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="form-page-header text-center">
+
+            <span class="form-badge">
+                EDIT SERVICE
+            </span>
+
+            <h1>
+                Update Your Listing
+            </h1>
+
+            <p>
+                Improve your service information, pricing, image, and presentation
+                to attract more customers.
+            </p>
+
+        </div>
+
+        <!-- Form Card -->
+        <div class="listing-form-card">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {{ form.hidden_tag() }}
+
+                <div class="row g-4">
+
+                    <!-- LEFT SIDE -->
+                    <div class="col-lg-8">
+
+                        <!-- Title -->
+                        <div class="modern-form-group">
+
+                            <label class="modern-label">
+                                Service Title
+                            </label>
+
+                            {{ form.title(
+                                class="form-control modern-input",
+                                placeholder="e.g. Premium Agbada Design"
+                            ) }}
+
+                            {% if form.title.errors %}
+                                <small class="text-danger">
+                                    {{ form.title.errors[0] }}
+                                </small>
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Description -->
+                        <div class="modern-form-group">
+
+                            <label class="modern-label">
+                                Service Description
+                            </label>
+
+                            {{ form.description(
+                                class="form-control modern-input",
+                                rows=8,
+                                placeholder="Describe your tailoring service..."
+                            ) }}
+
+                        </div>
+
+                        <!-- Current Image -->
+                        {% if listing.image_url %}
+                        <div class="modern-form-group">
+
+                            <label class="modern-label">
+                                Current Image
+                            </label>
+
+                            <div class="current-image-preview">
+
+                                <img
+                                    src="{{ listing.image_url }}"
+                                    alt="{{ listing.title }}"
+                                >
+
+                            </div>
+
+                        </div>
+                        {% endif %}
+
+                        <!-- Upload New Image -->
+                        <div class="modern-form-group">
+
+                            <label class="modern-label">
+                                Replace Service Image
+                            </label>
+
+                            <div class="upload-box">
+
+                                <i class="fas fa-images"></i>
+
+                                <p>
+                                    Upload a new image to replace the current one
+                                </p>
+
+                                {{ form.image_file(
+                                    class="form-control modern-file-input"
+                                ) }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT SIDE -->
+                    <div class="col-lg-4">
+
+                        <div class="service-sidebar-card">
+
+                            <!-- Price -->
+                            <div class="modern-form-group">
+
+                                <label class="modern-label">
+                                    Price
+                                </label>
+
+                                <div class="price-input-wrapper">
+
+                                    <span>$</span>
+
+                                    {{ form.price(
+                                        class="form-control modern-input",
+                                        placeholder="0.00"
+                                    ) }}
+
+                                </div>
+
+                            </div>
+
+                            <!-- Category -->
+                            <div class="modern-form-group">
+
+                                <label class="modern-label">
+                                    Category
+                                </label>
+
+                                {{ form.category(
+                                    class="form-select modern-input"
+                                ) }}
+
+                            </div>
+
+                            <!-- Turnaround -->
+                            <div class="modern-form-group">
+
+                                <label class="modern-label">
+                                    Delivery Time
+                                </label>
+
+                                {{ form.turnaround_time(
+                                    class="form-select modern-input"
+                                ) }}
+
+                            </div>
+
+                            <!-- Status Box -->
+                            <div class="listing-tip-box">
+
+                                <h6>
+                                    Listing Status
+                                </h6>
+
+                                <ul>
+                                    <li>Keep images high quality</li>
+                                    <li>Update prices when necessary</li>
+                                    <li>Improve descriptions regularly</li>
+                                    <li>Professional listings attract more orders</li>
+                                </ul>
+
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-grid gap-3 mt-4">
+
+                                <button type="submit" class="publish-btn">
+
+                                    <i class="fas fa-save me-2"></i>
+                                    Save Changes
+
+                                </button>
+
+                                <a
+                                    href="{{ url_for('dashboard.dashboard') }}"
+                                    class="cancel-btn text-center text-decoration-none"
+                                >
+
+                                    Cancel
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

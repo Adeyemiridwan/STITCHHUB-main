@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ current_user.username }}'s Profile
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+
+    <div class="container">
+
+        <!-- HERO -->
+
+        <div class="dashboard-hero">
+
+            <div class="hero-glow glow-one"></div>
+
+            <div class="dashboard-hero-content">
+
+                <div class="hero-left">
+
+                    <span class="dashboard-badge">
+                        PROFILE
+                    </span>
+
+                    <h1>
+                        {{ current_user.username }}
+                    </h1>
+
+                    <p>
+                        Manage your StitchHub profile information and tailor account.
+                    </p>
+
+                </div>
+
+                <div class="hero-right">
+
+                    <a
+                        href="{{ url_for('dashboard.dashboard') }}"
+                        class="hero-secondary-btn"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PROFILE CARD -->
+
+        <div class="profile-card">
+
+            <!-- HEADER -->
+
+            <div class="profile-header">
+
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <h2>
+                    {{ current_user.username }}
+                </h2>
+
+                <div class="profile-role-badge">
+                    <i class="fas fa-tag"></i>
+                    {{ current_user.role|capitalize }}
+                </div>
+
+            </div>
+
+            <!-- BODY -->
+
+            <div class="profile-body">
+
+                <!-- ACCOUNT INFO -->
+
+                <div class="profile-section">
+
+                    <h3 class="profile-section-title">
+                        <i class="fas fa-user-circle"></i>
+                        Account Information
+                    </h3>
+
+                    <div class="profile-info-grid">
+
+                        <div class="profile-info-box">
+
+                            <span class="profile-info-label">
+                                Username
+                            </span>
+
+                            <div class="profile-info-value">
+                                {{ current_user.username }}
+                            </div>
+
+                        </div>
+
+                        <div class="profile-info-box">
+
+                            <span class="profile-info-label">
+                                Account Type
+                            </span>
+
+                            <div class="profile-info-value">
+                                {{ current_user.role|capitalize }}
+                            </div>
+
+                        </div>
+
+                        <div class="profile-info-box">
+
+                            <span class="profile-info-label">
+                                Member Since
+                            </span>
+
+                            <div class="profile-info-value">
+                                {{ current_user.created_at.strftime('%B %d, %Y') }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- TAILOR PROFILE -->
+
+                {% if current_user.tailor_profile %}
+
+                <div class="profile-section">
+
+                    <h3 class="profile-section-title">
+                        <i class="fas fa-scissors"></i>
+                        Tailor Profile
+                    </h3>
+
+                    <div class="profile-info-grid">
+
+                        <div class="profile-info-box">
+
+                            <span class="profile-info-label">
+                                Location
+                            </span>
+
+                            <div class="profile-info-value">
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{ current_user.tailor_profile.location }}
+                            </div>
+
+                        </div>
+
+                        <div class="profile-info-box">
+
+                            <span class="profile-info-label">
+                                Verification Status
+                            </span>
+
+                            <div class="profile-info-value">
+
+                                {% if current_user.tailor_profile.verified %}
+
+                                <div class="verify-badge verify-success">
+
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified
+
+                                </div>
+
+                                {% else %}
+
+                                <div class="verify-badge verify-warning">
+
+                                    <i class="fas fa-clock"></i>
+                                    Pending Verification
+
+                                </div>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="profile-bio mt-4">
+
+                        {{ current_user.tailor_profile.bio }}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+                <!-- ACTIONS -->
+
+                <div class="profile-actions">
+
+                    <a
+                        href="{{ url_for('dashboard.dashboard') }}"
+                        class="profile-btn profile-btn-secondary"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </a>
+
+                    {% if not current_user.tailor_profile %}
+
+                    <a
+                        href="{{ url_for('profile.become_tailor') }}"
+                        class="profile-btn profile-btn-primary"
+                    >
+                        <i class="fas fa-scissors"></i>
+                        Become a Tailor
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

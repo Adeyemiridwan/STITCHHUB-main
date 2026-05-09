@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Dashboard{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="container">
+
+        <!-- HERO -->
+        <div class="dashboard-hero">
+
+            <!-- Glow -->
+            <div class="hero-glow glow-one"></div>
+            <div class="hero-glow glow-two"></div>
+
+            <div class="dashboard-hero-content">
+
+                <!-- LEFT -->
+                <div class="hero-left">
+
+                    <span class="dashboard-badge">
+                        CUSTOMER DASHBOARD
+                    </span>
+
+                    <h1>
+                        Welcome,
+                        <span>{{ current_user.username }}</span>
+                    </h1>
+
+                    <p>
+                        Discover talented tailors, request custom fashion
+                        services, track your orders, and manage your tailoring
+                        experience from one beautiful dashboard.
+                    </p>
+
+                    <!-- Mini Stats -->
+                    <div class="hero-mini-stats">
+
+                        <div class="mini-stat">
+                            <strong>24</strong>
+                            <span>Tailors</span>
+                        </div>
+
+                        <div class="mini-stat">
+                            <strong>12</strong>
+                            <span>Orders</span>
+                        </div>
+
+                        <div class="mini-stat">
+                            <strong>8</strong>
+                            <span>Requests</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="hero-right">
+
+                    <a
+                        href="{{ url_for('listings.marketplace') }}"
+                        class="hero-primary-btn"
+                    >
+                        <i class="fas fa-search"></i>
+                        Explore Marketplace
+                    </a>
+
+                    <a
+                        href="{{ url_for('orders.view_orders') }}"
+                        class="hero-secondary-btn"
+                    >
+                        <i class="fas fa-shopping-bag"></i>
+                        View Orders
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ACTION GRID -->
+        <div class="advanced-stats-grid">
+
+            <!-- Marketplace -->
+            <div class="advanced-stat-card">
+
+                <div class="advanced-stat-top">
+
+                    <div class="advanced-icon purple-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+
+                </div>
+
+                <h2>Marketplace</h2>
+
+                <p>
+                    Browse premium tailoring services from skilled professionals.
+                </p>
+
+                <a
+                    href="{{ url_for('listings.marketplace') }}"
+                    class="dashboard-action-btn"
+                >
+                    Browse Tailors
+                </a>
+
+            </div>
+
+            <!-- Orders -->
+            <div class="advanced-stat-card">
+
+                <div class="advanced-stat-top">
+
+                    <div class="advanced-icon blue-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+
+                </div>
+
+                <h2>Your Orders</h2>
+
+                <p>
+                    Track active tailoring orders and completed fashion projects.
+                </p>
+
+                <a
+                    href="{{ url_for('orders.view_orders') }}"
+                    class="dashboard-action-btn"
+                >
+                    View Orders
+                </a>
+
+            </div>
+
+            <!-- Become Tailor -->
+            {% if not current_user.tailor_profile %}
+
+            <div class="advanced-stat-card">
+
+                <div class="advanced-stat-top">
+
+                    <div class="advanced-icon green-icon">
+                        <i class="fas fa-scissors"></i>
+                    </div>
+
+                </div>
+
+                <h2>Become Tailor</h2>
+
+                <p>
+                    Start your tailoring business and showcase your fashion skills.
+                </p>
+
+                <a
+                    href="{{ url_for('profile.become_tailor') }}"
+                    class="dashboard-action-btn"
+                >
+                    Start Journey
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

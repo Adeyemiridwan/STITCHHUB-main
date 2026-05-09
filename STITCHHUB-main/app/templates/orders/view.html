@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}Order Timeline{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="container">
+
+        <!-- Hero -->
+        <div class="dashboard-hero">
+
+            <div class="hero-glow glow-one"></div>
+
+            <div class="dashboard-hero-content">
+
+                <div class="hero-left">
+
+                    <span class="dashboard-badge">
+                        ORDER TIMELINE
+                    </span>
+
+                    <h1>
+                        Order Progress
+                    </h1>
+
+                    <p>
+                        Follow the complete tailoring process.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Timeline -->
+        <div class="dashboard-card">
+
+            <div class="timeline-wrapper">
+
+                <!-- Requested -->
+                <div class="timeline-step completed">
+
+                    <div class="timeline-icon">
+                        1
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h5>
+                            Requested
+                        </h5>
+
+                        <small>
+                            {{ order.created_at.strftime('%b %d, %Y') }}
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <!-- Confirmed -->
+                <div class="timeline-step
+                    {% if order.status in ['confirmed', 'in_progress', 'ready', 'completed'] %}
+                        completed
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+                        2
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h5>
+                            Confirmed
+                        </h5>
+
+                        {% if order.confirmed_date %}
+                        <small>
+                            {{ order.confirmed_date.strftime('%b %d, %Y') }}
+                        </small>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <!-- Progress -->
+                <div class="timeline-step
+                    {% if order.status in ['in_progress', 'ready', 'completed'] %}
+                        completed
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+                        3
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h5>
+                            In Progress
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <!-- Ready -->
+                <div class="timeline-step
+                    {% if order.status in ['ready', 'completed'] %}
+                        completed
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+                        4
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h5>
+                            Ready
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <!-- Completed -->
+                <div class="timeline-step
+                    {% if order.status == 'completed' %}
+                        completed
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+                        5
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h5>
+                            Completed
+                        </h5>
+
+                        {% if order.completed_date %}
+                        <small>
+                            {{ order.completed_date.strftime('%b %d, %Y') }}
+                        </small>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="container">
+
+        <!-- Hero -->
+        <div class="dashboard-hero">
+
+            <div class="hero-glow glow-one"></div>
+
+            <div class="dashboard-hero-content">
+
+                <div class="hero-left">
+
+                    <span class="dashboard-badge">
+                        CUSTOMER ORDERS
+                    </span>
+
+                    <h1>
+                        Your Orders
+                    </h1>
+
+                    <p>
+                        Track your tailoring orders and monitor progress easily.
+                    </p>
+
+                </div>
+
+                <div class="hero-right">
+
+                    <a
+                        href="{{ url_for('request.my_requests') }}"
+                        class="hero-secondary-btn"
+                    >
+                        <i class="fas fa-envelope"></i>
+                        My Requests
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Orders -->
+        <div class="dashboard-card">
+
+            {% if orders %}
+
+                <div class="dashboard-list">
+
+                    {% for order in orders %}
+
+                    <div class="dashboard-item advanced-item">
+
+                        <!-- Left -->
+                        <div class="dashboard-item-left">
+
+                            <div class="item-image">
+
+                                {% if order.listing and order.listing.image_url %}
+                                    <img
+                                        src="{{ order.listing.image_url }}"
+                                        alt="{{ order.listing.title }}"
+                                    >
+                                {% else %}
+                                    <i class="fas fa-shirt"></i>
+                                {% endif %}
+
+                            </div>
+
+                            <div class="dashboard-item-info">
+
+                                <h6>
+
+                                    {% if order.listing %}
+                                        {{ order.listing.title }}
+                                    {% else %}
+                                        Custom Tailor Request
+                                    {% endif %}
+
+                                </h6>
+
+                                <span>
+                                    Tailor:
+                                    {{ order.tailor.user.username }}
+                                </span>
+
+                                <small>
+                                    {{ order.created_at.strftime('%b %d, %Y') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Right -->
+                        <div class="dashboard-item-right">
+
+                            <div class="status-badge status-{{ order.status }}">
+                                {{ order.status|capitalize }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <i class="fas fa-inbox"></i>
+
+                    <p>
+                        No orders yet.
+                    </p>
+
+                    <a
+                        href="{{ url_for('listings.marketplace') }}"
+                        class="primary-empty-btn"
+                    >
+                        Browse Marketplace
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

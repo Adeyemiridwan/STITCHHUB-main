@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Marketplace - StitchHub{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ========================================
+     Marketplace Header
+     ======================================== -->
+<section class="marketplace-hero text-center">
+    <div class="container">
+        <h1 class="marketplace-title">
+            Discover Elite Tailors
+        </h1>
+
+        <p class="marketplace-subtitle">
+            Browse premium fashion services, custom tailoring, alterations,
+            and unique handmade designs from skilled professionals.
+        </p>
+
+        <!-- Search -->
+        <div class="search-wrapper">
+            <form class="search-box d-flex align-items-center" method="GET">
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="search"
+                    placeholder="Search styles, services, designers..."
+                >
+
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- ========================================
+     Listings Grid
+     ======================================== -->
+<section>
+    <div class="container">
+        {% if listings %}
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {% for listing in listings %}
+                <!-- Listing Card -->
+                <div class="col">
+                    <div class="listing-card h-100">
+                        <!-- Image Container -->
+                        <div class="listing-img-wrapper">
+                            {% if listing.image_url %}
+                                <img 
+                                    src="{{ listing.image_url }}" 
+                                    class="listing-img" 
+                                    alt="{{ listing.title }}"
+                                >
+                            {% else %}
+                                <div class="d-flex align-items-center justify-content-center listing-img">
+                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                </div>
+                            {% endif %}
+                            
+                            <!-- Price Tag -->
+                            <span class="price-tag">
+                                <i class="fas fa-dollar-sign"></i>${{ "%.2f"|format(listing.price) }}
+                            </span>
+                        </div>
+
+                        <!-- Card Body -->
+                       <div class="listing-content d-flex flex-column">
+
+                            <!-- Listing Title -->
+                            <h5 class="listing-title">
+                                {{ listing.title }}
+                            </h5>
+
+                            <!-- Description -->
+                            <p class="listing-description">
+                                {{ listing.description|truncate(120) }}
+                            </p>
+
+                            <!-- Tailor Name -->
+                            <div class="tailor-info mb-3">
+                                <i class="fas fa-user me-1"></i>
+                                {{ listing.tailor.user.username }}
+                            </div>
+
+                            <!-- PUSH BUTTONS TO BOTTOM -->
+                            <div class="mt-auto">
+
+                                <div class="listing-actions mt-auto">
+
+                                    <!-- View -->
+                                    <a 
+                                        href="{{ url_for('listings.view_listing', listing_id=listing.id) }}" 
+                                        class="btn-modern btn-view"
+                                    >
+                                        <i class="fas fa-eye me-1"></i>View
+                                    </a>
+                                    <!-- Request (CUSTOMER ONLY) -->
+                                    {% if current_user.is_authenticated and current_user.role == "customer" %}
+
+                                        {% if listing.id in active_listing_ids %}
+                                            <button class="btn-modern btn-pending" disabled>
+                                                Waiting...
+                                            </button>
+                                        {% else %}
+                                            <a href="{{ url_for('request.request_tailor', listing_id=listing.id) }}"
+                                            class="btn-modern btn-request">
+                                                Request Tailor
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Empty State Message -->
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                <h3 class="text-muted">No listings found</h3>
+                <p class="text-muted">
+                    Try adjusting your search or check back later for new services.
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

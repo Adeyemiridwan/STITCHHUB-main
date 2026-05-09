@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Incoming Requests{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="container">
+
+        <!-- Hero -->
+        <div class="dashboard-hero small-hero">
+
+            <div class="hero-glow glow-two"></div>
+
+            <div class="dashboard-hero-content">
+
+                <div class="hero-left">
+
+                    <span class="dashboard-badge">
+                        TAILOR REQUEST CENTER
+                    </span>
+
+                    <h1>
+                        Incoming Requests
+                    </h1>
+
+                    <p>
+                        Manage customer tailoring requests and respond professionally.
+                    </p>
+
+                </div>
+
+                <div class="hero-right">
+
+                    <a
+                        href="{{ url_for('dashboard.dashboard') }}"
+                        class="hero-secondary-btn"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Requests -->
+        <div class="dashboard-card">
+
+            {% if requests %}
+
+                <div class="dashboard-list">
+
+                    {% for req in requests %}
+
+                    <div class="dashboard-item advanced-item">
+
+                        <!-- Left -->
+                        <div class="dashboard-item-left">
+
+                            <div class="item-image">
+                                <i class="fas fa-user"></i>
+                            </div>
+
+                            <div class="dashboard-item-info">
+
+                                <h6>
+                                    {{ req.requester.username }}
+                                </h6>
+
+                                <span>
+                                    {{ req.cloth_type|title }}
+                                </span>
+
+                                <small>
+                                    {{ req.location }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Right -->
+                        <div class="dashboard-item-right">
+
+                            <form
+                                method="POST"
+                                action="{{ url_for('request.accept_request', request_id=req.id) }}"
+                            >
+
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    value="{{ csrf_token() }}"
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="icon-btn edit-btn"
+                                >
+                                    <i class="fas fa-check"></i>
+                                </button>
+
+                            </form>
+
+                            <form
+                                method="POST"
+                                action="{{ url_for('request.reject_request', request_id=req.id) }}"
+                            >
+
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    value="{{ csrf_token() }}"
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="icon-btn delete-btn"
+                                >
+                                    <i class="fas fa-times"></i>
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <i class="fas fa-inbox"></i>
+
+                    <p>
+                        No requests available yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

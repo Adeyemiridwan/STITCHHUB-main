@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}
+Become a Tailor
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+
+    <div class="container">
+
+        <!-- HERO -->
+
+        <div class="dashboard-hero">
+
+            <div class="hero-glow glow-one"></div>
+
+            <div class="dashboard-hero-content">
+
+                <div class="hero-left">
+
+                    <span class="dashboard-badge">
+                        TAILOR REGISTRATION
+                    </span>
+
+                    <h1>
+                        Become a StitchHub Tailor
+                    </h1>
+
+                    <p>
+                        Expand your tailoring business and connect with more customers.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FORM CARD -->
+
+        <div class="tailor-form-card">
+
+            <div class="tailor-form-header">
+
+                <h2>
+                    Tailor Application
+                </h2>
+
+                <p>
+                    Fill in your professional details below to continue.
+                </p>
+
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {{ form.hidden_tag() }}
+
+                <!-- BIO -->
+
+                <div class="form-group-custom">
+
+                    <label class="form-label-custom">
+                        Skills & Experience
+                    </label>
+
+                    {{ form.bio(
+                        class="custom-textarea",
+                        placeholder="Tell customers about your tailoring experience..."
+                    ) }}
+
+                    {% if form.bio.errors %}
+
+                        <div class="form-error">
+
+                            {% for error in form.bio.errors %}
+                                {{ error }}
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- LOCATION -->
+
+                <div class="form-group-custom">
+
+                    <label class="form-label-custom">
+                        Location
+                    </label>
+
+                    {{ form.location(
+                        class="custom-input",
+                        placeholder="Your city or working area"
+                    ) }}
+
+                    {% if form.location.errors %}
+
+                        <div class="form-error">
+
+                            {% for error in form.location.errors %}
+                                {{ error }}
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- CERTIFICATE -->
+
+                <div class="form-group-custom">
+
+                    <label class="form-label-custom">
+                        Professional Certificate
+                    </label>
+
+                    {{ form.certificate(class="custom-file-input") }}
+
+                    <div class="form-help-text">
+                        Upload tailoring certification document.
+                    </div>
+
+                </div>
+
+                <!-- DOCUMENT -->
+
+                <div class="form-group-custom">
+
+                    <label class="form-label-custom">
+                        Government ID
+                    </label>
+
+                    {{ form.document(class="custom-file-input") }}
+
+                    <div class="form-help-text">
+                        Upload government-issued verification document.
+                    </div>
+
+                </div>
+
+                <!-- BUTTONS -->
+
+                <div class="form-action-group">
+
+                    <button type="submit" class="primary-btn">
+
+                        <i class="fas fa-check-circle"></i>
+                        Complete Registration
+
+                    </button>
+
+                    <a
+                        href="{{ url_for('profile.profile') }}"
+                        class="secondary-btn"
+                    >
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

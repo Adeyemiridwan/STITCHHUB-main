@@ -1,0 +1,506 @@
+{% extends "base.html" %}
+
+{% block title %}Tailor Dashboard{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="container">
+
+        <!-- Dashboard Header -->
+        <div class="dashboard-hero">
+
+    <!-- Glow -->
+            <div class="hero-glow glow-one"></div>
+            <div class="hero-glow glow-two"></div>
+
+            <div class="dashboard-hero-content">
+
+                <!-- Left -->
+                <div class="hero-left">
+
+                    <span class="dashboard-badge">
+                        TAILOR CONTROL CENTER
+                    </span>
+
+                    <h1>
+                        Welcome back,
+                        <span>{{ current_user.username }}</span>
+                    </h1>
+
+                    <p>
+                        Manage your fashion business, customer requests,
+                        orders, and premium tailoring services from one dashboard.
+                    </p>
+
+                    <div class="hero-mini-stats">
+
+                        <div class="mini-stat">
+                            <strong>{{ listings|length }}</strong>
+                            <span>Listings</span>
+                        </div>
+
+                        <div class="mini-stat">
+                            <strong>{{ orders|length }}</strong>
+                            <span>Orders</span>
+                        </div>
+
+                        <div class="mini-stat">
+                            <strong>{{ requests|length }}</strong>
+                            <span>Requests</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Right -->
+                <div class="hero-right">
+
+                    <a
+                        href="{{ url_for('listings.add_listing') }}"
+                        class="hero-primary-btn"
+                    >
+                        <i class="fas fa-plus"></i>
+                        Create Listing
+                    </a>
+
+                    <a
+                        href="{{ url_for('request.available_requests') }}"
+                        class="hero-secondary-btn"
+                    >
+                        <i class="fas fa-inbox"></i>
+                        View Requests
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Stats -->
+        <div class="advanced-stats-grid">
+
+            <!-- Listings -->
+            <div class="advanced-stat-card">
+
+                <div class="advanced-stat-top">
+
+                    <div class="advanced-icon purple-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+
+                    <span class="growth-tag positive-tag">
+                        +12%
+                    </span>
+
+                </div>
+
+                <h2>{{ listings|length }}</h2>
+
+                <p>Total Listings</p>
+
+            </div>
+
+            <!-- Orders -->
+            <div class="advanced-stat-card">
+
+                <div class="advanced-stat-top">
+
+                    <div class="advanced-icon blue-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+
+                    <span class="growth-tag positive-tag">
+                        +8%
+                    </span>
+
+                </div>
+
+                <h2>{{ orders|length }}</h2>
+
+                <p>Active Orders</p>
+
+            </div>
+
+            <!-- Requests -->
+            <div class="advanced-stat-card">
+
+                <div class="advanced-stat-top">
+
+                    <div class="advanced-icon orange-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+
+                    <span class="growth-tag neutral-tag">
+                        Pending
+                    </span>
+
+                </div>
+
+                <h2>{{ requests|length }}</h2>
+
+                <p>Incoming Requests</p>
+
+            </div>
+
+            <!-- Views -->
+            <div class="advanced-stat-card">
+
+                <div class="advanced-stat-top">
+
+                    <div class="advanced-icon green-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+
+                    <span class="growth-tag positive-tag">
+                        +24%
+                    </span>
+
+                </div>
+
+                <h2>1,245</h2>
+
+                <p>Profile Views</p>
+
+            </div>
+
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="row g-4">
+
+            <!-- Orders -->
+            <div class="col-lg-6">
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-header">
+
+                        <h4>
+                            Recent Orders
+                        </h4>
+
+                        <a
+                            href="{{ url_for('orders.view_orders') }}"
+                            class="mini-link"
+                        >
+                            View All
+                        </a>
+
+                    </div>
+
+                    {% if orders %}
+
+                        <div class="dashboard-list">
+
+                            {% for order in orders[:5] %}
+
+                            <div class="dashboard-item advanced-item">
+
+                            <!-- Left -->
+                            <div class="dashboard-item-left">
+
+                                <!-- Image -->
+                                <div class="item-image">
+
+                                    {% if order.listing.image_url %}
+                                        <img
+                                            src="{{ order.listing.image_url }}"
+                                            alt="{{ order.listing.title }}"
+                                        >
+                                    {% else %}
+                                        <i class="fas fa-shirt"></i>
+                                    {% endif %}
+
+                                </div>
+
+                                <!-- Info -->
+                                <div class="dashboard-item-info">
+
+                                    <h6>
+                                        {{ order.listing.title }}
+                                    </h6>
+
+                                    <span>
+                                        Order #{{ order.id }}
+                                    </span>
+
+                                    <small>
+                                        Customer:
+                                        {{ order.customer.username }}
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Right -->
+                            <div class="dashboard-item-right">
+
+                                <div class="status-badge status-{{ order.status }}">
+                                    {{ order.status|capitalize }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="empty-state">
+
+                            <i class="fas fa-inbox"></i>
+
+                            <p>
+                                No orders yet
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <!-- Listings -->
+            <div class="col-lg-6">
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-header">
+
+                        <h4>
+                            Your Listings
+                        </h4>
+
+                        <a
+                            href="{{ url_for('listings.add_listing') }}"
+                            class="mini-link"
+                        >
+                            Add New
+                        </a>
+
+                    </div>
+
+                    {% if listings %}
+
+                        <div class="dashboard-list">
+
+                            {% for listing in listings[:5] %}
+
+                            <div class="dashboard-item advanced-item">
+
+                                <!-- LEFT SIDE -->
+                                <div class="dashboard-item-left">
+
+                                    <!-- Image -->
+                                    <div class="item-image">
+
+                                        {% if listing.image_url %}
+                                            <img
+                                                src="{{ listing.image_url }}"
+                                                alt="{{ listing.title }}"
+                                            >
+                                        {% else %}
+                                            <i class="fas fa-box"></i>
+                                        {% endif %}
+
+                                    </div>
+
+                                    <!-- Info -->
+                                    <div class="dashboard-item-info">
+
+                                        <h6>
+                                            {{ listing.title }}
+                                        </h6>
+
+                                        <span>
+                                            ${{ "%.2f"|format(listing.price) }}
+                                        </span>
+
+                                        <small>
+                                            Premium Tailoring Service
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- RIGHT SIDE -->
+                                <div class="dashboard-item-right">
+
+                                    <div class="listing-actions-group">
+
+                                        <!-- Edit -->
+                                        <a
+                                            href="{{ url_for('listings.edit_listing', listing_id=listing.id) }}"
+                                            class="icon-btn edit-btn"
+                                        >
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+
+                                        <!-- Delete -->
+                                        <form
+                                            action="{{ url_for('listings.delete_listing', listing_id=listing.id) }}"
+                                            method="POST"
+                                        >
+
+                                            <input
+                                                type="hidden"
+                                                name="csrf_token"
+                                                value="{{ csrf_token() }}"
+                                            >
+
+                                            <button
+                                                type="submit"
+                                                class="icon-btn delete-btn"
+                                                onclick="return confirm('Delete this listing?')"
+                                            >
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="empty-state">
+
+                            <i class="fas fa-box-open"></i>
+
+                            <p>
+                                No listings created yet
+                            </p>
+
+                            <a
+                                href="{{ url_for('listings.add_listing') }}"
+                                class="primary-empty-btn"
+                            >
+                                Create First Listing
+                            </a>
+
+                        </div>
+
+                    {% endif %}
+                    
+                </div>
+                
+            </div>
+
+                <!-- Recent Requests -->
+                <div class="row mt-4">
+
+                    <div class="col-12">
+
+                        <div class="dashboard-card">
+
+                            <!-- Header -->
+                            <div class="dashboard-card-header">
+
+                                <h4>
+                                    Recent Requests
+                                </h4>
+
+                                <a
+                                    href="{{ url_for('request.available_requests') }}"
+                                    class="mini-link"
+                                >
+                                    View All
+                                </a>
+
+                            </div>
+
+                            {% if requests %}
+
+                                <div class="dashboard-list">
+
+                                    {% for request in requests[:5] %}
+
+                                    <div class="dashboard-item advanced-item">
+
+                                        <!-- LEFT -->
+                                        <div class="dashboard-item-left">
+
+                                            <!-- Customer Icon -->
+                                            <div class="item-image">
+
+                                                <i class="fas fa-user"></i>
+
+                                            </div>
+
+                                            <!-- Info -->
+                                            <div class="dashboard-item-info">
+
+                                                <h6>
+                                                    {{ request.requester.username }}
+                                                </h6>
+
+                                                <span>
+                                                    Interested in:
+                                                    {{ request.listing.title }}
+                                                </span>
+
+                                                <small>
+                                                    Request ID #{{ request.id }}
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- RIGHT -->
+                                        <div class="dashboard-item-right">
+
+                                            <div class="status-badge status-{{ request.status }}">
+                                                {{ request.status|capitalize }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            {% else %}
+
+                                <div class="empty-state">
+
+                                    <i class="fas fa-envelope-open-text"></i>
+
+                                    <p>
+                                        No customer requests yet
+                                    </p>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </section>
+{% endblock %}

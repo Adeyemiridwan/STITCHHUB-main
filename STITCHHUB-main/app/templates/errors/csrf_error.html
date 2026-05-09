@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Security Error{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card border-danger">
+        <div class="card-header bg-danger text-white">
+            <h2>Security Error</h2>
+        </div>
+        <div class="card-body">
+            <p class="lead">{{ reason }}</p>
+            <p>This usually happens when:</p>
+            <ul>
+                <li>Your session expired</li>
+                <li>You submitted a form from another website</li>
+                <li>Cookies are disabled in your browser</li>
+            </ul>
+            <a href="{{ url_for('main.home') }}" class="btn btn-primary">
+                <i class="fas fa-home me-2"></i>Return Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

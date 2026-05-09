@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block title %}My Requests{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="container">
+
+        
+        <!-- Header -->
+        <div class="dashboard-page-header">
+
+            <div>
+
+                <span class="dashboard-badge">
+                    CUSTOMER REQUESTS
+                </span>
+
+                <h1 class="page-title">
+                    My Requests
+                </h1>
+
+                <p class="page-subtitle">
+                    Track all tailoring requests and their progress.
+                </p> 
+
+            </div>
+
+        </div>
+
+        {% if requests %}
+
+            <div class="dashboard-list">
+
+                {% for req in requests %}
+
+                <div class="dashboard-item advanced-item">
+
+                    <!-- LEFT -->
+                    <div class="dashboard-item-left">
+
+                        <div class="item-image">
+
+                            <i class="fas fa-shirt"></i>
+
+                        </div>
+
+                        <div class="dashboard-item-info">
+
+                            <h6>
+                                {{ req.cloth_type|title }}
+                            </h6>
+
+                            <span>
+                                {{ req.location }}
+                            </span>
+
+                            <small>
+                                {{ req.description or "No description provided" }}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT -->
+                    <div class="dashboard-item-right">
+
+                        {% if req.status == "pending" %}
+
+                            <div class="status-badge status-pending">
+                                Waiting
+                            </div>
+
+                        {% elif req.status == "accepted" %}
+
+                            <div class="status-badge status-completed">
+                                Accepted
+                            </div>
+
+                        {% elif req.status == "rejected" %}
+
+                            <div class="status-badge status-cancelled">
+                                Rejected
+                            </div>
+
+                        {% elif req.status == "cancelled" %}
+
+                            <div class="status-badge status-requested">
+                                Cancelled
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <i class="fas fa-inbox"></i>
+
+                <p>
+                    You haven't made any requests yet
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
+

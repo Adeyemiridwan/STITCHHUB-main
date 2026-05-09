@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Request Tailor{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="container">
+
+        <div class="request-form-wrapper">
+
+            <!-- Header -->
+            <div class="request-form-header">
+
+                <span class="dashboard-badge">
+                    TAILOR SERVICE REQUEST
+                </span>
+
+                <h1>
+                    Request Tailor
+                </h1>
+
+                <p>
+                    Fill the details below to request this tailoring service.
+                </p>
+
+            </div>
+
+            <!-- Form -->
+            <form method="POST" class="advanced-form">
+
+                {{ form.hidden_tag() }}
+
+                <!-- Cloth Type -->
+                <div class="form-group">
+
+                    <label>
+                        Cloth Type
+                    </label>
+
+                    {{ form.cloth_type(class="form-control custom-input") }}
+
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    {{ form.description(class="form-control custom-input custom-textarea") }}
+
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+
+                    <label>
+                        Location
+                    </label>
+
+                    {{ form.location(class="form-control custom-input") }}
+
+                </div>
+
+                <!-- Urgency -->
+                <div class="form-group">
+
+                    <label>
+                        Urgency
+                    </label>
+
+                    {{ form.urgency(class="form-select custom-input") }}
+
+                </div>
+
+
+                 <!-- Buttons -->
+                <div class="d-grid gap-3 mt-4">
+
+                    <!-- Submit -->
+                    <button type="submit" class="hero-primary-btn form-btn">
+
+                        <i class="fas fa-paper-plane"></i>
+
+                        Send Request
+
+                    </button>
+
+                    <a
+                        href="{{ url_for('listings.marketplace') }}"
+                        class="cancel-btn text-center text-decoration-none"
+                    >
+
+                        Cancel
+
+                    </a>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

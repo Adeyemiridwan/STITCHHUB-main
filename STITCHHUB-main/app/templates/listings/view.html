@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}{{ listing.title }} - StitchHub{% endblock %}
+
+{% block content %}
+
+<!-- ========================================
+     Listing Details Section
+========================================= -->
+<section class="listing-page">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <!-- ========================================
+                 LEFT SIDE
+            ========================================= -->
+            <div class="col-lg-8">
+
+                <!-- Image -->
+                <div class="listing-preview-card">
+
+                    {% if listing.image_url %}
+                        <img
+                            src="{{ listing.image_url }}"
+                            alt="{{ listing.title }}"
+                            class="listing-preview-image"
+                        >
+                    {% else %}
+                        <div class="listing-preview-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <!-- Main Content -->
+                <div class="listing-main-card">
+
+                    <!-- Category -->
+                    <span class="listing-category">
+                        {{ listing.category }}
+                    </span>
+
+                    <!-- Title -->
+                    <h1 class="listing-main-title">
+                        {{ listing.title }}
+                    </h1>
+
+                    <!-- Meta -->
+                    <div class="listing-meta">
+
+                        <div class="meta-item">
+                            <i class="fas fa-user"></i>
+                            {{ listing.tailor.user.username }}
+                        </div>
+
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            {{ listing.created_at|time_ago }}
+                        </div>
+
+                        <div class="meta-item">
+                            <i class="fas fa-location-dot"></i>
+                            {{ listing.tailor.location }}
+                        </div>
+
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="custom-divider"></div>
+
+                    <!-- Description -->
+                    <div class="listing-description-box">
+
+                        <h4>Description</h4>
+
+                        <p>
+                            {{ listing.description }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ========================================
+                 RIGHT SIDE
+            ========================================= -->
+            <div class="col-lg-4">
+
+                <!-- Sticky Card -->
+                <div class="order-card">
+
+                    <!-- Price -->
+                    <div class="price-box">
+                        ${{ "%.2f"|format(listing.price) }}
+                    </div>
+
+                    <!-- Turnaround -->
+                    <div class="turnaround-box">
+                        <i class="fas fa-hourglass-half"></i>
+                        {{ listing.turnaround_time }}
+                    </div>
+
+                    <!-- Tailor -->
+                    <div class="tailor-box">
+
+                        <div class="tailor-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <div>
+                            <h6>
+                                {{ listing.tailor.user.username }}
+                            </h6>
+
+                            <small>
+                                Professional Tailor
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-3 mt-4">
+
+                        {% if current_user.is_authenticated and current_user.id != listing.tailor.user_id %}
+
+                            <button
+                                class="btn order-btn"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#orderForm"
+                            >
+                                <i class="fas fa-bag-shopping me-2"></i>
+                                Place Order
+                            </button>
+
+                        {% else %}
+
+                            <button class="btn disabled-btn">
+                                Login To Order
+                            </button>
+
+                        {% endif %}
+
+                        <a
+                            href="{{ url_for('listings.marketplace') }}"
+                            class="btn back-btn"
+                        >
+                            Back To Marketplace
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ========================================
+             ORDER FORM
+        ========================================= -->
+        {% if current_user.is_authenticated and current_user.id != listing.tailor.user_id %}
+
+        <div class="collapse mt-5" id="orderForm">
+
+            <div class="order-form-card">
+
+                <div class="form-header">
+                    <h3>Place Your Order</h3>
+
+                    <p>
+                        Provide measurements and instructions for your custom design.
+                    </p>
+                </div>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('listings.view_listing', listing_id=listing.id) }}"
+                >
+
+                    {{ form.hidden_tag() }}
+
+                    <!-- Notes -->
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Notes
+                        </label>
+
+                        {{ form.notes(
+                            class="form-control modern-input",
+                            rows=4,
+                            placeholder="Describe your preferred style..."
+                        ) }}
+
+                    </div>
+
+                    <!-- Measurements -->
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Measurements
+                        </label>
+
+                        {{ form.measurements(
+                            class="form-control modern-input",
+                            rows=3,
+                            placeholder="Chest, Waist, Shoulder..."
+                        ) }}
+
+                    </div>
+
+                    <!-- Requests -->
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Special Requests
+                        </label>
+
+                        {{ form.special_requests(
+                            class="form-control modern-input",
+                            rows=3,
+                            placeholder="Special fabrics, embroidery..."
+                        ) }}
+
+                    </div>
+
+                    <button type="submit" class="btn submit-order-btn">
+
+                        <i class="fas fa-check-circle me-2"></i>
+                        Confirm Order
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

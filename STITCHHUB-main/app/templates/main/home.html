@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+
+{% block title %}Find Your Perfect Tailor{% endblock %}
+
+{% block content %}
+
+<!-- =========================================
+     HERO SECTION
+========================================= -->
+
+<section class="hero-modern">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6">
+
+                <div class="hero-content">
+
+                    <!-- SMALL BADGE -->
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i>
+                        Africa’s Modern Tailor Marketplace
+                    </div>
+
+                    <!-- MAIN TITLE -->
+                    <h1 class="hero-title">
+                        Find Skilled Tailors
+                        For Your Perfect
+                        Fashion Style
+                    </h1>
+
+                    <!-- DESCRIPTION -->
+                    <p class="hero-description">
+                        StitchHub connects customers with trusted tailors,
+                        premium designers, and fashion creators for custom
+                        clothing, alterations, and luxury outfits.
+                    </p>
+
+                    <!-- BUTTONS -->
+                    <div class="hero-buttons">
+
+                        <a href="{{ url_for('listings.marketplace') }}"
+                           class="btn-modern-primary">
+
+                            <i class="fas fa-store"></i>
+                            Explore Marketplace
+
+                        </a>
+
+                        <a href="{{ url_for('auth.register') }}"
+                           class="btn-modern-outline">
+
+                            <i class="fas fa-user-plus"></i>
+                            Get Started
+
+                        </a>
+
+                    </div>
+
+                    <!-- STATS -->
+                    <div class="hero-stats">
+
+                        <div class="hero-stat-box">
+                            <h3>500+</h3>
+                            <p>Tailors</p>
+                        </div>
+
+                        <div class="hero-stat-box">
+                            <h3>2K+</h3>
+                            <p>Orders</p>
+                        </div>
+
+                        <div class="hero-stat-box">
+                            <h3>4.9★</h3>
+                            <p>Ratings</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-6">
+
+                <div class="hero-image-wrapper">
+
+                    <!-- MAIN CARD -->
+                    <div class="hero-main-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1200"
+                            alt="Fashion"
+                        >
+
+                    </div>
+
+                    <!-- FLOATING CARD 1 -->
+                    <div class="floating-card card-one">
+
+                        <div class="floating-icon">
+                            <i class="fas fa-scissors"></i>
+                        </div>
+
+                        <div>
+                            <h6>Professional Tailors</h6>
+                            <p>Verified Experts</p>
+                        </div>
+
+                    </div>
+
+                    <!-- FLOATING CARD 2 -->
+                    <div class="floating-card card-two">
+
+                        <div class="floating-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+
+                        <div>
+                            <h6>Fast Delivery</h6>
+                            <p>Reliable Service</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     FEATURED TAILORS
+========================================= -->
+
+<section class="section-modern">
+
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+        <div class="section-header">
+
+            <span class="section-badge">
+                Featured Tailors
+            </span>
+
+            <h2>
+                Meet Top Fashion Designers
+            </h2>
+
+            <p>
+                Skilled tailors delivering premium fashion experiences.
+            </p>
+
+        </div>
+
+        <!-- TAILOR GRID -->
+        <div class="row g-4">
+
+            {% for tailor in tailors.items %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="tailor-card-modern">
+
+                    <!-- TOP -->
+                    <div class="tailor-card-top">
+
+                        <div class="tailor-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <div>
+
+                            <h5>
+                                {{ tailor.user.username }}
+                            </h5>
+
+                            <span>
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{ tailor.location }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BODY -->
+                    <div class="tailor-card-body">
+
+                        <div class="tailor-meta">
+
+                            <div>
+                                <strong>4.9★</strong>
+                                <small>Rating</small>
+                            </div>
+
+                            <div>
+                                <strong>120+</strong>
+                                <small>Orders</small>
+                            </div>
+
+                            <div>
+                                <strong>5+</strong>
+                                <small>Years</small>
+                            </div>
+
+                        </div>
+
+                        <a href="{{ url_for('profile.view_tailor', tailor_id=tailor.id) }}"
+                           class="btn-tailor-view">
+
+                            View Profile
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     HOW IT WORKS
+========================================= -->
+
+<section class="how-modern">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-badge">
+                How It Works
+            </span>
+
+            <h2>
+                Simple & Easy Process
+            </h2>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- STEP -->
+            <div class="col-lg-4">
+
+                <div class="how-card">
+
+                    <div class="how-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <h4>
+                        Browse Tailors
+                    </h4>
+
+                    <p>
+                        Explore verified tailors and premium fashion creators.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- STEP -->
+            <div class="col-lg-4">
+
+                <div class="how-card">
+
+                    <div class="how-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+
+                    <h4>
+                        Request Service
+                    </h4>
+
+                    <p>
+                        Discuss styles, materials, measurements, and delivery.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- STEP -->
+            <div class="col-lg-4">
+
+                <div class="how-card">
+
+                    <div class="how-icon">
+                        <i class="fas fa-shirt"></i>
+                    </div>
+
+                    <h4>
+                        Get Your Outfit
+                    </h4>
+
+                    <p>
+                        Receive premium fashion crafted by skilled professionals.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
