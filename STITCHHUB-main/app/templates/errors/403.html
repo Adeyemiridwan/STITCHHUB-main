@@ -1,11 +1,48 @@
 {% extends "base.html" %}
 
-{% block title %}Page Not Found{% endblock %}
+{% block title %}403 - Access Denied{% endblock %}
 
 {% block content %}
-<div class="container my-5 text-center">
-    <h1 class="display-1">403</h1>
-    <p class="lead">The page you're looking for doesn't exist</p>
-    <a href="{{ url_for('main.home') }}" class="btn btn-primary mt-3">Go Home</a>
-</div>
+
+<section class="error-page">
+
+    <div class="container">
+
+        <div class="error-card">
+
+            <div class="error-icon error-warning">
+                <i class="fas fa-lock"></i>
+            </div>
+
+            <span class="error-badge">
+                ACCESS DENIED
+            </span>
+
+            <h1 class="error-code">
+                403
+            </h1>
+
+            <h2 class="error-title">
+                You Don't Have Permission
+            </h2>
+
+            <p class="error-text">
+                The page or resource you are trying to access is restricted or unavailable for your current account.
+            </p>
+
+            <div class="error-actions">
+
+                <a href="{{ url_for('main.home') }}" class="primary-error-btn">
+                    <i class="fas fa-home me-2"></i>
+                    Return Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

@@ -7,27 +7,46 @@
 
     <div class="container">
 
-        
-        <!-- Header -->
-        <div class="dashboard-page-header">
+        <!-- Hero -->
+        <div class="dashboard-hero small-hero">
 
-            <div>
+            <div class="hero-glow glow-two"></div>
 
-                <span class="dashboard-badge">
-                    CUSTOMER REQUESTS
-                </span>
+            <div class="dashboard-hero-content">
 
-                <h1 class="page-title">
-                    My Requests
-                </h1>
+                <div class="hero-left">
 
-                <p class="page-subtitle">
-                    Track all tailoring requests and their progress.
-                </p> 
+                    <span class="dashboard-badge">
+                        CUSTOMER REQUESTS
+                    </span>
+
+                    <h1>
+                        My Requests
+                    </h1>
+
+                    <p>
+                        Track all tailoring requests and their progress.
+                    </p>
+
+                </div>
+
+                <div class="hero-right">
+
+                    <a
+                        href="{{ url_for('orders.view_orders') }}"
+                        class="hero-secondary-btn"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Orders
+                    </a>
+
+                </div>
 
             </div>
 
         </div>
+
+    <div class="container">
 
         {% if requests %}
 
@@ -117,7 +136,7 @@
 
     </div>
 
-</section>
+</section> 
 
 {% endblock %}
 

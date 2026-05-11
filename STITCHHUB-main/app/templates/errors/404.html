@@ -1,11 +1,48 @@
 {% extends "base.html" %}
 
-{% block title %}Page Not Found{% endblock %}
+{% block title %}404 - Page Not Found{% endblock %}
 
 {% block content %}
-<div class="container my-5 text-center">
-    <h1 class="display-1">404</h1>
-    <p class="lead">The page you're looking for doesn't exist</p>
-    <a href="{{ url_for('main.home') }}" class="btn btn-primary mt-3">Go Home</a>
-</div>
+
+<section class="error-page">
+
+    <div class="container">
+
+        <div class="error-card">
+
+            <div class="error-icon">
+                <i class="fas fa-compass"></i>
+            </div>
+
+            <span class="error-badge">
+                PAGE NOT FOUND
+            </span>
+
+            <h1 class="error-code">
+                404
+            </h1>
+
+            <h2 class="error-title">
+                This Page Doesn't Exist
+            </h2>
+
+            <p class="error-text">
+                The page you are looking for may have been removed, renamed, or is temporarily unavailable.
+            </p>
+
+            <div class="error-actions">
+
+                <a href="{{ url_for('main.home') }}" class="primary-error-btn">
+                    <i class="fas fa-home me-2"></i>
+                    Return Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

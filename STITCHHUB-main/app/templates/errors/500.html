@@ -1,11 +1,48 @@
 {% extends "base.html" %}
 
-{% block title %}Page Not Found{% endblock %}
+{% block title %}500 - Server Error{% endblock %}
 
 {% block content %}
-<div class="container my-5 text-center">
-    <h1 class="display-1">500</h1>
-    <p class="lead">The page you're looking for doesn't exist</p>
-    <a href="{{ url_for('main.home') }}" class="btn btn-primary mt-3">Go Home</a>
-</div>
+
+<section class="error-page">
+
+    <div class="container">
+
+        <div class="error-card">
+
+            <div class="error-icon error-danger">
+                <i class="fas fa-server"></i>
+            </div>
+
+            <span class="error-badge">
+                SERVER ERROR
+            </span>
+
+            <h1 class="error-code">
+                500
+            </h1>
+
+            <h2 class="error-title">
+                Something Went Wrong
+            </h2>
+
+            <p class="error-text">
+                Our server encountered an unexpected issue while processing your request. Please try again later.
+            </p>
+
+            <div class="error-actions">
+
+                <a href="{{ url_for('main.home') }}" class="primary-error-btn">
+                    <i class="fas fa-home me-2"></i>
+                    Return Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

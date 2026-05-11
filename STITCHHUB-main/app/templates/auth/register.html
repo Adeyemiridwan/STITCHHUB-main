@@ -3,145 +3,183 @@
 {% block title %}Register - StitchHub{% endblock %}
 
 {% block content %}
-<!-- ========================================
-     Registration Form Container
-     ======================================== -->
-<section class="py-5">
+
+<section class="auth-page">
+
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="card border-0 shadow-lg">
-                    <div class="card-body p-5">
-                        <!-- Header -->
-                        <div class="text-center mb-4">
-                            <i class="fas fa-user-plus fa-2x text-primary mb-3"></i>
-                            <h2 class="fw-bold">Create Account</h2>
-                            <p class="text-muted">Join StitchHub today</p>
+
+        <div class="auth-wrapper">
+
+            <!-- LEFT -->
+            <div class="auth-left">
+
+                <div class="auth-badge">
+                    CREATE ACCOUNT
+                </div>
+
+                <h1>
+                    Join The StitchHub Community
+                </h1>
+
+                <p>
+                    Create your account and start connecting with professional tailors,
+                    managing custom clothing requests, and growing your fashion journey.
+                </p>
+
+                <div class="auth-feature-list">
+
+                    <div class="auth-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Create and manage orders</span>
+                    </div>
+
+                    <div class="auth-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Discover verified tailors</span>
+                    </div>
+
+                    <div class="auth-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Build your tailoring brand</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="auth-card">
+
+                <div class="auth-card-header">
+
+                    <div class="auth-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+
+                    <h2>
+                        Register
+                    </h2>
+
+                    <p>
+                        Create your StitchHub account
+                    </p>
+
+                </div>
+
+                <form method="POST" class="auth-form">
+
+                    {{ form.hidden_tag() }}
+
+                    <!-- USERNAME -->
+                    <div class="auth-form-group">
+
+                        <label class="auth-label">
+                            Username
+                        </label>
+
+                        <div class="auth-input-box">
+
+                            <i class="fas fa-user"></i>
+
+                            {{ form.username(
+                                class="auth-input",
+                                placeholder="Choose a username"
+                            ) }}
+
                         </div>
 
-                        <!-- Registration Form -->
-                        <form method="POST" novalidate>
-                            {{ form.hidden_tag() }}
-
-                            <!-- Username Field -->
-                            <div class="mb-3">
-                                <label for="username" class="form-label fw-bold">
-                                    <i class="fas fa-user me-2 text-primary"></i>Username
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-user text-muted"></i>
-                                    </span>
-                                    {{ form.username(
-                                        class="form-control",
-                                        placeholder="Choose a username",
-                                        autocomplete="username"
-                                    ) }}
-                                </div>
-                                {% if form.username.errors %}
-                                    <div class="text-danger small mt-2">
-                                        {% for error in form.username.errors %}
-                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}<br>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                            </div>
-
-                            <!-- Email Field -->
-                            <div class="mb-3">
-                                <label for="email" class="form-label fw-bold">
-                                    <i class="fas fa-envelope me-2 text-primary"></i>Email Address
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-envelope text-muted"></i>
-                                    </span>
-                                    {{ form.email(
-                                        class="form-control",
-                                        type="email",
-                                        placeholder="Enter your email",
-                                        autocomplete="email"
-                                    ) }}
-                                </div>
-                                {% if form.email.errors %}
-                                    <div class="text-danger small mt-2">
-                                        {% for error in form.email.errors %}
-                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}<br>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                            </div>
-
-                            <!-- Password Field -->
-                            <div class="mb-3">
-                                <label for="password" class="form-label fw-bold">
-                                    <i class="fas fa-lock me-2 text-primary"></i>Password
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-lock text-muted"></i>
-                                    </span>
-                                    {{ form.password(
-                                        class="form-control",
-                                        placeholder="Create a strong password",
-                                        autocomplete="new-password"
-                                    ) }}
-                                </div>
-                                {% if form.password.errors %}
-                                    <div class="text-danger small mt-2">
-                                        {% for error in form.password.errors %}
-                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}<br>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                                <div class="form-text">
-                                    <i class="fas fa-info-circle me-1"></i>Password must be at least 8 characters
-                                </div>
-                            </div>
-
-                            <!-- Confirm Password Field -->
-                            <div class="mb-4">
-                                <label for="confirm_password" class="form-label fw-bold">
-                                    <i class="fas fa-lock me-2 text-primary"></i>Confirm Password
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-lock text-muted"></i>
-                                    </span>
-                                    {{ form.confirm_password(
-                                        class="form-control",
-                                        placeholder="Re-enter your password",
-                                        autocomplete="new-password"
-                                    ) }}
-                                </div>
-                                {% if form.confirm_password.errors %}
-                                    <div class="text-danger small mt-2">
-                                        {% for error in form.confirm_password.errors %}
-                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}<br>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                            </div>
-
-                            <!-- Submit Button -->
-                            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold mb-3">
-                                <i class="fas fa-user-plus me-2"></i>Register
-                            </button>
-
-                            <!-- Login Link -->
-                            <div class="text-center pt-3 border-top">
-                                <p class="text-muted mb-0">
-                                    Already have an account?
-                                    <a href="{{ url_for('auth.login') }}" class="text-decoration-none fw-bold text-primary">
-                                        Login here
-                                    </a>
-                                </p>
-                            </div>
-                        </form>
                     </div>
-                </div>
+
+                    <!-- EMAIL -->
+                    <div class="auth-form-group">
+
+                        <label class="auth-label">
+                            Email
+                        </label>
+
+                        <div class="auth-input-box">
+
+                            <i class="fas fa-envelope"></i>
+
+                            {{ form.email(
+                                class="auth-input",
+                                placeholder="Enter your email"
+                            ) }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="auth-form-group">
+
+                        <label class="auth-label">
+                            Password
+                        </label>
+
+                        <div class="auth-input-box">
+
+                            <i class="fas fa-lock"></i>
+
+                            {{ form.password(
+                                class="auth-input",
+                                placeholder="Create password"
+                            ) }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- CONFIRM -->
+                    <div class="auth-form-group">
+
+                        <label class="auth-label">
+                            Confirm Password
+                        </label>
+
+                        <div class="auth-input-box">
+
+                            <i class="fas fa-lock"></i>
+
+                            {{ form.confirm_password(
+                                class="auth-input",
+                                placeholder="Confirm password"
+                            ) }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- BUTTON -->
+                    <button type="submit" class="auth-btn">
+
+                        <i class="fas fa-user-plus"></i>
+
+                        Create Account
+
+                    </button>
+
+                    <!-- FOOTER -->
+                    <div class="auth-footer">
+
+                        <p>
+                            Already have an account?
+                        </p>
+
+                        <a href="{{ url_for('auth.login') }}">
+                            Login Here
+                        </a>
+
+                    </div>
+
+                </form>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
+
 {% endblock %}

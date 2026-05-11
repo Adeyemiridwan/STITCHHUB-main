@@ -1,4 +1,93 @@
 /* =========================================
+  AUTH  RESPONSIVE
+========================================= */
+
+@media (max-width: 992px){
+
+    .auth-wrapper{
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .auth-left{
+        text-align: center;
+        padding: 38px;
+    }
+
+    .auth-left p{
+        margin: auto;
+    }
+
+    .auth-feature{
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 768px){
+
+    .auth-left{
+        padding: 28px;
+        border-radius: 24px;
+    }
+
+    .auth-page{
+        padding: 35px 0 70px;
+    }
+
+    .auth-left h1{
+        font-size: 2.2rem;
+    }
+
+    .auth-card{
+        padding: 28px;
+        border-radius: 24px;
+    }
+
+    .auth-card-header h2{
+        font-size: 1.7rem;
+    }
+
+    .auth-icon{
+        width: 72px;
+        height: 72px;
+        font-size: 1.6rem;
+    }
+
+    .auth-left p{
+        font-size: 0.96rem;
+        line-height: 1.8;
+    }
+
+    .auth-feature{
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 480px){
+
+    .auth-card{
+        padding: 22px;
+    }
+
+    .auth-left h1{
+        font-size: 1.9rem;
+    }
+
+    .auth-input{
+        height: 54px;
+    }
+
+    .auth-btn{
+        height: 54px;
+    }
+
+}
+
+
+
+/* =========================================
    DASHBOARD RESPONSIVE
 ========================================= */
 
@@ -165,6 +254,8 @@
 
 }
 
+
+
 @media (max-width: 768px){
 
     .profile-page{
@@ -200,6 +291,134 @@
     .primary-btn,
     .secondary-btn{
         width: 100%;
+    }
+
+    .tailor-box{
+        align-items: flex-start;
+    }
+
+    .service-sidebar-card{
+        padding: 22px;
+    }
+
+    .upload-box{
+        padding: 28px 18px;
+    }
+
+}
+
+
+
+
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 992px){
+
+    .listing-main-title{
+        font-size: 2.2rem;
+    }
+
+}
+
+@media (max-width: 768px){
+
+    .marketplace-title{
+        font-size: 2.2rem;
+    }
+
+    .marketplace-subtitle{
+        font-size: 0.98rem;
+
+        line-height: 1.9;
+
+        padding: 0 10px;
+    }
+
+    .marketplace-subtitle{
+        font-size: 0.98rem;
+
+        line-height: 1.9;
+
+        padding: 0 10px;
+    }
+
+    .listing-main-title{
+        font-size: 1.9rem;
+    }
+
+    .listing-preview-image,
+    .listing-preview-placeholder{
+        height: 320px;
+    }
+
+    .listing-content,
+    .listing-main-card,
+    .order-card,
+    .order-form-card,
+    .listing-form-card{
+        padding: 24px;
+    }
+
+    .listing-actions{
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE FIX
+========================================= */
+
+@media (max-width: 768px){
+
+    .form-page-header h1{
+        font-size: 2.2rem;
+    }
+
+    .form-page-header p{
+        font-size: 0.96rem;
+
+        line-height: 1.9;
+
+        padding: 0 10px;
+    }
+
+    .tailor-info-content h6{
+        font-size: 0.84rem;
+    }
+
+}
+
+
+/* =========================================
+   ERROR RESPONSIVE
+========================================= */
+
+@media (max-width: 768px){
+
+    .error-page{
+        padding: 50px 0;
+    }
+
+    .error-card{
+        padding: 40px 24px;
+    }
+
+    .error-code{
+        font-size: 4.5rem;
+    }
+
+    .error-title{
+        font-size: 1.6rem;
+    }
+
+    .error-text{
+        font-size: 0.96rem;
     }
 
 }

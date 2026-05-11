@@ -31,17 +31,6 @@
 
                 </div>
 
-                <div class="hero-right">
-
-                    <a
-                        href="{{ url_for('orders.view_orders') }}"
-                        class="hero-secondary-btn"
-                    >
-                        <i class="fas fa-arrow-left"></i>
-                        Back
-                    </a>
-
-                </div>
 
             </div>
 
@@ -333,6 +322,16 @@
         <button type="submit" class="primary-btn">
             Update Order
         </button>
+
+              <a
+                        href="{{ url_for('orders.view_orders') }}"
+                        class="cancel-btn text-center text-decoration-none"
+                    >
+
+                        Back to Orders
+
+            </a>
+
 
     </form>
 

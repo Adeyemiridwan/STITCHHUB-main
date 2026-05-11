@@ -1,0 +1,234 @@
+/* =========================================
+   ERROR PAGE
+========================================= */
+
+.error-page{
+    padding: 80px 0;
+}
+
+/* =========================================
+   ERROR CARD
+========================================= */
+
+.error-card{
+    max-width: 760px;
+
+    margin: auto;
+
+    padding: 60px 40px;
+
+    border-radius: 34px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24,24,40,0.98),
+            rgba(16,16,28,0.98)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.35);
+
+    overflow: hidden;
+}
+
+/* =========================================
+   ICON
+========================================= */
+
+.error-icon{
+    width: 100px;
+    height: 100px;
+
+    margin: 0 auto 24px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6C63FF,
+            #4F46E5
+        );
+
+    color: white;
+
+    font-size: 2.2rem;
+
+    box-shadow:
+        0 14px 30px rgba(108,99,255,0.35);
+}
+
+.error-warning{
+    background:
+        linear-gradient(
+            135deg,
+            #ffb020,
+            #ff8a00
+        );
+}
+
+.error-danger{
+    background:
+        linear-gradient(
+            135deg,
+            #ff5d7a,
+            #ff2d55
+        );
+}
+
+/* =========================================
+   BADGE
+========================================= */
+
+.error-badge{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 20px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: #b8b4ff;
+
+    font-size: 0.8rem;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 24px;
+}
+
+/* =========================================
+   TEXT
+========================================= */
+
+.error-code{
+    font-size: 6rem;
+    font-weight: 900;
+
+    color: #ffffff;
+
+    line-height: 1;
+
+    margin-bottom: 16px;
+
+    text-shadow:
+        0 6px 20px rgba(0,0,0,0.3);
+}
+
+.error-title{
+    font-size: 2rem;
+    font-weight: 800;
+
+    color: #ffffff;
+
+    margin-bottom: 18px;
+}
+
+.error-text{
+    max-width: 620px;
+
+    margin: 0 auto;
+
+    color: rgba(255,255,255,0.88);
+
+    font-size: 1.02rem;
+
+    line-height: 2;
+}
+
+/* =========================================
+   SECURITY BOX
+========================================= */
+
+.security-info-box{
+    margin-top: 34px;
+
+    padding: 28px;
+
+    border-radius: 24px;
+
+    text-align: left;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.security-info-box h5{
+    color: #ffffff;
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+.security-info-box ul{
+    margin: 0;
+    padding-left: 20px;
+}
+
+.security-info-box li{
+    color: rgba(255,255,255,0.84);
+
+    line-height: 2;
+
+    margin-bottom: 8px;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.error-actions{
+    margin-top: 38px;
+}
+
+.primary-error-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 30px;
+
+    border-radius: 18px;
+
+    text-decoration: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6C63FF,
+            #4F46E5
+        );
+
+    color: white;
+
+    font-weight: 700;
+
+    transition: 0.3s ease;
+}
+
+.primary-error-btn:hover{
+    transform: translateY(-2px);
+
+    color: white;
+
+    box-shadow:
+        0 14px 30px rgba(108,99,255,0.35);
+}
+
